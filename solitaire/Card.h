@@ -10,19 +10,23 @@
 class Card {
 private:
     std::string symb;
-    int value;
+    char value;
+    bool black;
     bool visibility;
 
 public:
-    Card(std::string _symb, int _value, bool _vis):symb(_symb),value(_value), visibility(_vis){}
-    Card(std::string _symb, int _value);
+    Card(std::string _symb, char _value, bool _vis, bool color):symb(_symb),value(_value), visibility(_vis), black(color){}
+    Card(std::string _symb, char _value, bool _color);
     Card();
+    void printCard();
     std::string getSymb();
     void setSymb(std::string _symb);
-    int getValue();
-    void setValue(int _value);
+    char getValue();
+    void setValue(char _value);
     bool isVisible();
     void setVisvibility(bool _visibility);
+    bool isBlack();
+    void setColor(bool _isBlack);
 
 };
 

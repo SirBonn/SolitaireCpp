@@ -1,0 +1,8 @@
+//
+// Created by ADMIN on 29/02/2024.
+//
+
+#ifndef SOLITAIRECPP_REFEREE_H
+#define SOLITAIRECPP_REFEREE_H
+
+#endif //SOLITAIRECPP_REFEREE_H

@@ -10,7 +10,7 @@
 class Queue{
 private:
     Node* frontPtr;
-    Node* ptr;
+    Node* rearPtr;
 public:
     Queue();
     void addQueue(Card card);

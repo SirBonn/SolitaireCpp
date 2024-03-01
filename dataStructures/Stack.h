@@ -15,6 +15,7 @@ public:
     void push(Card _card);
     Card pop();
     bool isEmpty();
+    void printDeck();
     ~Stack();
 };
 

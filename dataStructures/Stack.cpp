@@ -6,6 +6,7 @@
 
 Stack::Stack() {
     topStack = nullptr;
+    size = 0;
 }
 
 void Stack::push(Card _card) {
@@ -13,12 +14,13 @@ void Stack::push(Card _card) {
 
     if (isEmpty()) {
         topStack = node;
+        size++;
         return;
     }
 
     node->setPtr(topStack);
     topStack = node;
-
+    size++;
 }
 
 Card Stack::pop() {
@@ -28,8 +30,9 @@ Card Stack::pop() {
     }
 
     Node *node = topStack;
-    topStack = topStack->getPtr();
+    topStack = topStack->getFrPtr();
     Card poppedCard = node->getCard();
+    size--;
     delete (node);
     return poppedCard;
 }
@@ -42,7 +45,7 @@ Stack::~Stack() {
 
 }
 
-void Stack::printDeck() {
+void Stack::printStack() {
 
 
     if (topStack == nullptr) {
@@ -52,13 +55,37 @@ void Stack::printDeck() {
 
     Node *tmpNode = topStack;
 
-    while (tmpNode->getPtr() != nullptr) {
+    while (tmpNode->getFrPtr() != nullptr) {
         std::cout << "\t";
         tmpNode->getCard().printCard();
         std::cout << "\n";
-        tmpNode = tmpNode->getPtr();
+        tmpNode = tmpNode->getFrPtr();
     }
+    std::cout << "\t";
+    tmpNode->getCard().printCard();
+    std::cout << "\n";
+    tmpNode = tmpNode->getFrPtr();
 
 }
+
+void Stack::printOnBoard(bool isVisible) {
+    if (isVisible && !isEmpty()) {
+        std::cout << "[";
+        topStack->getCard().printCard();
+        std::cout << "]       |      ";
+    } else {
+        std::cout << "[  " << size << "  ]          |         ";
+
+    }
+}
+
+int Stack::getSize() {
+    return size;
+}
+
+void Stack::setSize(int _size) {
+    size = _size;
+}
+
 
 

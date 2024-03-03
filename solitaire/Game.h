@@ -7,12 +7,12 @@
 
 #include "../dataStructures/Queue.h"
 #include "../dataStructures/Stack.h"
+#include "Referee.h"
 
-class Game{
+class Game {
 private:
 
     Stack deck; //mazo contenedor de las 52 cartas
-
     Stack dropperDeck; //mazo con cartas mezcladas
     Stack discardsDeck; //espacio para poner cartas descartadas
 
@@ -23,18 +23,27 @@ private:
     Queue column5;
     Queue column6;
     Queue column7;
-
     Queue sortedDeckA;
     Queue sortedDeckB;
     Queue sortedDeckC;
     Queue sortedDeckD;
+    Queue columnsBoard[7];
+
+    Referee referee;
+
+    void fillCards();
+    void fillColumns();
+    void dropCards();
+    void printBoard();
+    void exitGame(bool* _exit);
+
+
 
 public:
 
     Game();
-    void fillCards();
-    void dropCards();
-    Queue sortDeck();
+
+    void playSolitaire();
 
 };
 

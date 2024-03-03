@@ -10,13 +10,17 @@
 class Stack {
 private:
     Node* topStack;
+    int size;
 public:
     Stack();
     void push(Card _card);
     Card pop();
     bool isEmpty();
-    void printDeck();
+    void printStack();
+    int getSize();
+    void setSize(int _size);
     ~Stack();
+    void printOnBoard(bool isVisible);
 };
 
 #endif //SOLITAIRECPP_STACK_H

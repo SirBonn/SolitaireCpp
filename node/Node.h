@@ -9,15 +9,15 @@
 class Node{
 
 private:
-    Node *ptr;
+    Node *frontPtr;
     Card card;
 
 public:
-    Node(Card _card): card(_card), ptr(nullptr){}
+    Node(Card _card): card(_card), frontPtr(nullptr){}
     Node();
     Card getCard();
     void setCard(Card _card);
-    Node* getPtr();
+    Node* getFrPtr();
     void setPtr(Node* node);
 };
 

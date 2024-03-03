@@ -5,10 +5,7 @@ int main() {
     std::cout << "Hello, World!" << std::endl;
 
     Game game;
-
-    std::cout << "filling" << std::endl;
-    game.fillCards();
-    std::cout << "Filled" << std::endl;
+    game.playSolitaire();
 
     return 0;
 }

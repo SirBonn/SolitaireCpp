@@ -15,4 +15,5 @@ add_executable(SolitaireCpp main.cpp
         solitaire/Game.cpp
         solitaire/Game.h
         solitaire/Referee.h
-        solitaire/Referee.cpp)
+        solitaire/Referee.cpp
+)

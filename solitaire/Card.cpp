@@ -48,7 +48,11 @@ void Card::setColor(bool _isBlack) {
 
 void Card::printCard() {
 
+if(value<70){
+    int number = value - 47;
+    std::cout<<number<<" "<<symb<<" "<<black;
+} else {
     std::cout<<value<<" "<<symb<<" "<<black;
-
+}
 }
 

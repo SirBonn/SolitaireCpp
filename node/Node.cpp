@@ -3,8 +3,9 @@
 //
 // Created by ADMIN on 28/02/2024.
 //
+
 Node::Node() {
-    ptr = nullptr;
+    frontPtr = nullptr;
 }
 
 Card Node::getCard() {
@@ -15,12 +16,12 @@ void Node::setCard(Card _card) {
     card=_card;
 }
 
-Node *Node::getPtr() {
-    return ptr;
+Node *Node::getFrPtr() {
+    return frontPtr;
 }
 
 void Node::setPtr(Node *node) {
-    ptr = node;
+    frontPtr = node;
 }
 
 

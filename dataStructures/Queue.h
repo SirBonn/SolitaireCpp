@@ -7,22 +7,20 @@
 
 #include "../node/Node.h"
 
-class Queue{
+class Queue {
 private:
-    Node* frontPtr;
-    Node* rearPtr;
+    Node* lastAdd;
     int size;
 public:
     Queue();
-    void addQueue(Card card);
-    Card dropQueue();
+    void addQueue(Card _card);
+    Card unQueue();
     bool isEmpty();
+    void printQueue();
     int getSize();
     void setSize(int _size);
-    void printQueue();
     ~Queue();
-
-    void printSortedDeck();
+    void printOnBoard(bool isVisible);
 };
 
 #endif //SOLITAIRECPP_QUEUE_H

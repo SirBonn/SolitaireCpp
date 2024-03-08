@@ -1,26 +1,30 @@
 //
 // Created by ADMIN on 28/02/2024.
 //
+#include <iostream>
 #include "Stack.h"
-#include "iostream"
 
 Stack::Stack() {
-    topStack = nullptr;
+    beginNode = nullptr;
+    endNode = nullptr;
+    ptr = nullptr;
     size = 0;
 }
 
-void Stack::push(Card _card) {
-    Node *node = new Node(_card);
+void Stack::push(Card card) {
 
-    if (isEmpty()) {
-        topStack = node;
-        size++;
-        return;
+    ptr = new DNode(card);
+
+    if (beginNode == nullptr) {
+        beginNode = ptr;
+    } else {
+        //endNode->getCard().setVisvibility(false);
+        endNode->setFrPtr(ptr);
+        ptr->setRrPtr(endNode);
     }
+    endNode = ptr;
+    //endNode->getCard().setVisvibility(true);
 
-    node->setPtr(topStack);
-    topStack = node;
-    size++;
 }
 
 Card Stack::pop() {
@@ -29,58 +33,31 @@ Card Stack::pop() {
         std::cout << "this stack is empty" << std::endl;
     }
 
-    Node *node = topStack;
-    topStack = topStack->getFrPtr();
-    Card poppedCard = node->getCard();
+    ptr = endNode;
+    endNode = endNode->getRrPtr();
+    endNode->setFrPtr(nullptr);
+    endNode->getCard().setVisvibility(true);
+    std::cout << "last value: ->";
+    ptr->getCard().printCard();
+    std::cout << " <-\n";
+
+    Card dequeuedCard = ptr->getCard();
+    delete(ptr);
     size--;
-    delete (node);
-    return poppedCard;
+    return dequeuedCard;
 }
 
+
 bool Stack::isEmpty() {
-    return topStack == nullptr;
+    return beginNode == nullptr;
 }
 
 Stack::~Stack() {
 
 }
 
-void Stack::printStack() {
-
-
-    if (topStack == nullptr) {
-        std::cout << "this stack is empty" << std::endl;
-        return;
-    }
-
-    Node *tmpNode = topStack;
-
-    while (tmpNode->getFrPtr() != nullptr) {
-        std::cout << "\t";
-        tmpNode->getCard().printCard();
-        std::cout << "\n";
-        tmpNode = tmpNode->getFrPtr();
-    }
-    std::cout << "\t";
-    tmpNode->getCard().printCard();
-    std::cout << "\n";
-    tmpNode = tmpNode->getFrPtr();
-
-}
-
-void Stack::printOnBoard(bool isVisible) {
-    if (isVisible && !isEmpty()) {
-        std::cout << "[";
-        topStack->getCard().printCard();
-        std::cout << "]       |      ";
-    } else {
-        std::cout << "[  " << size << "  ]          |         ";
-
-    }
-}
-
 int Stack::getSize() {
-    return size;
+    return (size);
 }
 
 void Stack::setSize(int _size) {
@@ -88,4 +65,37 @@ void Stack::setSize(int _size) {
 }
 
 
+void Stack::printStack() {
+    ptr = beginNode;
 
+    while (ptr != nullptr) {
+        std::cout << "| [";
+        ptr->getCard().printCard();
+        std::cout << "] ";
+        ptr = ptr->getFrPtr();
+    }
+
+}
+
+void Stack::printSortedDeck() {
+
+    if (isEmpty()) {
+
+        std::cout << "[  ]   |   ";
+    } else {
+        std::cout << "[" << beginNode->getCard().getSymb() << "]      |      ";
+    }
+
+}
+
+DNode* Stack::getEndNode() {
+    return endNode;
+}
+
+DNode* Stack::getBeginNode() {
+    return beginNode;
+}
+
+Card Stack::getTopCard() {
+    return endNode->getCard();
+}

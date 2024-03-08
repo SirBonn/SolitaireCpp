@@ -1,60 +1,86 @@
 //
 // Created by ADMIN on 28/02/2024.
 //
-#include <iostream>
 #include "Queue.h"
+#include "iostream"
 
 Queue::Queue() {
-    frontPtr = nullptr;
-    rearPtr = nullptr;
+    lastAdd = nullptr;
     size = 0;
 }
 
-void Queue::addQueue(Card card) {
-
-    Node *node = new Node(card);
+void Queue::addQueue(Card _card) {
+    Node *node = new Node(_card);
 
     if (isEmpty()) {
-        frontPtr = rearPtr = node;
+        lastAdd = node;
+        size++;
         return;
     }
 
-    rearPtr->setPtr(node);
-    rearPtr = node;
-    ++size;
-
+    node->setPtr(lastAdd);
+    lastAdd = node;
+    size++;
 }
 
-Card Queue::dropQueue() {
+Card Queue::unQueue() {
 
     if (isEmpty()) {
         std::cout << "this queue is empty" << std::endl;
     }
 
-    Node *tmpNode = rearPtr;
-    frontPtr = frontPtr->getFrPtr();
-    Card dequeuedCard = tmpNode->getCard();
+    Node *node = lastAdd;
+    lastAdd = lastAdd->getFrPtr();
+    Card poppedCard = node->getCard();
     size--;
-    delete tmpNode;
-
-    if (frontPtr == nullptr) {
-        rearPtr = nullptr;
-    }
-
-    return dequeuedCard;
+    delete (node);
+    return poppedCard;
 }
 
-
 bool Queue::isEmpty() {
-    return frontPtr == nullptr;
+    return lastAdd == nullptr;
 }
 
 Queue::~Queue() {
 
 }
 
+void Queue::printQueue() {
+
+
+    if (lastAdd == nullptr) {
+        std::cout << "this stack is empty" << std::endl;
+        return;
+    }
+
+    Node *tmpNode = lastAdd;
+
+    while (tmpNode->getFrPtr() != nullptr) {
+        std::cout << "\t";
+        tmpNode->getCard().printCard();
+        std::cout << "\n";
+        tmpNode = tmpNode->getFrPtr();
+    }
+    std::cout << "\t";
+    tmpNode->getCard().printCard();
+    std::cout << "\n";
+    tmpNode = tmpNode->getFrPtr();
+
+}
+
+void Queue::printOnBoard(bool isVisible) {
+    if (isVisible && !isEmpty()) {
+        std::cout << "[";
+        lastAdd->getCard().printCard();
+        std::cout << "]       |      ";
+    } else {
+        std::cout << "[  " << size << "  ]          |         ";
+
+    }
+}
+
 int Queue::getSize() {
-    return (size);
+    return size;
 }
 
 void Queue::setSize(int _size) {
@@ -63,25 +89,3 @@ void Queue::setSize(int _size) {
 
 
 
-void Queue::printQueue(){
-
-    Node* tmpNode = frontPtr;
-
-    while (tmpNode != nullptr) {
-        std::cout << "| [";
-        tmpNode->getCard().printCard();
-        std::cout << "] ";
-        tmpNode = tmpNode->getFrPtr();
-    }
-
-
-}
-
-void Queue::printSortedDeck(){
-    if(isEmpty()){
-
-        std::cout<<"[  ]   |   ";
-    } else {
-        std::cout<<"["<<frontPtr->getCard().getSymb()<<"]      |      ";
-    }
-}

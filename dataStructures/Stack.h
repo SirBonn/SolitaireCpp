@@ -5,22 +5,28 @@
 #ifndef SOLITAIRECPP_STACK_H
 #define SOLITAIRECPP_STACK_H
 
-#include "../node/Node.h"
+#include "../node/DNode.h"
 
-class Stack {
+class Stack{
 private:
-    Node* topStack;
+    DNode* beginNode;
+    DNode* endNode;
+    DNode* ptr;
     int size;
 public:
     Stack();
-    void push(Card _card);
+    void push(Card card);
     Card pop();
     bool isEmpty();
-    void printStack();
     int getSize();
     void setSize(int _size);
+    void printStack();
+    DNode * getBeginNode();
+    DNode * getEndNode();
+    void printSortedDeck();
+    Card getTopCard();
     ~Stack();
-    void printOnBoard(bool isVisible);
+
 };
 
 #endif //SOLITAIRECPP_STACK_H

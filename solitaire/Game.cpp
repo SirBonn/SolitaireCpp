@@ -31,15 +31,13 @@ void Game::playSolitaire() {
 
         switch (opc) {
             case 'A' | 'a': //mover carta
-                std::cout << "\nunstacked card: ";
-
-                //columnsBoard[2].getTopCard();
+                moveCard();
                 break;
             case 'S' | 's': //pedir cartas
                 dropCards();
                 break;
-            case 'D' | 'd': //deshacer movimiento
-
+            case 'D' | 'd': //tomar del mazo
+                getCard();
                 break;
             case 'W' | 'w': //deshacer movimiento
 
@@ -69,30 +67,41 @@ void Game::fillCards() {
     for (std::string sym: symbs) {
         for (char value: values) {
             bool color = count % 2 == 0;
-            Card newCard = Card(sym, value, color);
+            Card newCard = Card(sym, value, color, count);
             deck.addQueue(newCard);
         }
         count++;
     }
-    referee.randomizeDeck(&deck);
 
+    referee.randomizeDeck(&deck);
 }
 
 void Game::moveCard() {
 
-    int col;
+    int colOld;
+    int colNew;
+    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     printCards();
-    std::cout << "\nDe que columna deseas mover la carta()\n\t|>> ";
-    std::cin >> col;
-    if (col > 6) {
-        std::cout << "no existe esa pila, vuelve a intentarlo";
-
-    } else {
-        if (referee.valuateMovement(columnsBoard[col].getTopCard(), &columnsBoard[0])) {
+    std::cout << "\nDe que columna deseas mover la carta\n\t|>> ";
+    std::cin >> colOld;
+    std::cout << "\na que columna deseas mover la carta\n\t|>> ";
+    std::cin >> colNew;
+    if (colExist(colOld - 1) && colExist(colNew - 1)) {
+        if (referee.valuateMovement(columnsBoard[colOld - 1].getTopCard(), &columnsBoard[colNew - 1])) {
+            columnsBoard[colNew - 1].push(columnsBoard[colOld - 1].pop());
+        } else {
+            std::cout << "el movimiento no es valido";
+            return;
         }
+    } else {
+        std::cout << "no existe esa pila, vuelve a intentarlo";
     }
 
 };
+
+void Game::getCard(){
+
+}
 
 void Game::fillColumns() {
 
@@ -169,6 +178,6 @@ void Game::printCards() {
 }
 
 
-bool Game::colExist(int col){
-    retur col>6;
+bool Game::colExist(int col) {
+    return col < 7;
 }

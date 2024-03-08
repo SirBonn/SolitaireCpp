@@ -8,12 +8,13 @@ add_executable(SolitaireCpp main.cpp
         node/Node.h
         solitaire/Card.cpp
         solitaire/Card.h
-        dataStructures/Queue.cpp
-        dataStructures/Queue.h
-        dataStructures/Stack.h
         dataStructures/Stack.cpp
+        dataStructures/Stack.h
+        dataStructures/Queue.h
+        dataStructures/Queue.cpp
         solitaire/Game.cpp
         solitaire/Game.h
         solitaire/Referee.h
         solitaire/Referee.cpp
+        node/DNode.cpp
 )

@@ -6,8 +6,8 @@
 #define SOLITAIRECPP_REFEREE_H
 
 #include "Card.h"
-#include "../dataStructures/Queue.h"
 #include "../dataStructures/Stack.h"
+#include "../dataStructures/Queue.h"
 
 class Referee{
 
@@ -16,9 +16,9 @@ private:
 public:
     Referee();
     bool valuateCards(Card beforeCard, Card newCard);
-    bool valuateMovement(Card beforeCard, Card newCard);
-    bool valuateDeck(Queue sortedDeck, Queue* deckSpace);
-    void randomizeDeck(Stack* deck);
+    bool valuateMovement(Card newCard, Stack* stack);
+    bool valuateDeck(Stack sortedDeck, Stack* deckSpace);
+    void randomizeDeck(Queue* deck);
 
 };
 #endif //SOLITAIRECPP_REFEREE_H

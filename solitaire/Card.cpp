@@ -4,10 +4,12 @@
 #include <iostream>
 #include "Card.h"
 
-Card::Card(std::string _symb, char _value, bool _color) {
-    symb=_symb;
-    value=_value;
-    black= _color;
+Card::Card(std::string _symb, char _value, bool _color, int _pale) {
+    symb = _symb;
+    value = _value;
+    black = _color;
+    pale = _pale;
+    visibility = false;
 }
 
 Card::Card() {
@@ -27,7 +29,7 @@ char Card::getValue() {
 }
 
 void Card::setValue(char _value) {
-    value=_value;
+    value = _value;
 }
 
 bool Card::isVisible() {
@@ -35,24 +37,40 @@ bool Card::isVisible() {
 }
 
 void Card::setVisvibility(bool _visibility) {
-    visibility=_visibility;
+    visibility = _visibility;
 }
 
-bool Card::isBlack(){
+bool Card::isBlack() {
     return black;
 }
 
 void Card::setColor(bool _isBlack) {
-    black=_isBlack;
+    black = _isBlack;
 }
 
 void Card::printCard() {
 
-if(value<70){
-    int number = value - 47;
-    std::cout<<number<<" "<<symb<<" "<<black;
-} else {
-    std::cout<<value<<" "<<symb<<" "<<black;
+    if (value < 70) {
+
+        if (!visibility) {
+            int number = value - 47;
+            std::cout << number << " " << symb << " " << black;
+        } else {
+            std::cout << "#######" << black;
+        }
+
+    } else {
+
+        if (!visibility) {
+            std::cout << value << " " << symb << " " << black;
+        } else {
+            std::cout << "#######" << black;
+        }
+
+    }
 }
+
+int Card::getPale() {
+    return pale;
 }
 

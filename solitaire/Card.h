@@ -11,12 +11,13 @@ class Card {
 private:
     std::string symb;
     char value;
+    int pale;
     bool black;
     bool visibility;
 
 public:
     Card(std::string _symb, char _value, bool _vis, bool color):symb(_symb),value(_value), visibility(_vis), black(color){}
-    Card(std::string _symb, char _value, bool _color);
+    Card(std::string _symb, char _value, bool _color, int pale);
     Card();
     void printCard();
     std::string getSymb();
@@ -27,6 +28,7 @@ public:
     void setVisvibility(bool _visibility);
     bool isBlack();
     void setColor(bool _isBlack);
+    int getPale();
 
 };
 

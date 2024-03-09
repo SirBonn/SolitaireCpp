@@ -49,6 +49,8 @@ private:
 
     void getCard();
 
+    void analyzeDeck();
+
 
 public:
 

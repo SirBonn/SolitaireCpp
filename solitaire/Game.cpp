@@ -27,7 +27,9 @@ void Game::playSolitaire() {
     fillCards();
     fillColumns();
     while (!winner) {
+
         printBoard();
+        analyzeDeck();
         std::cin >> opc;
 
         switch (opc) {
@@ -209,4 +211,11 @@ void Game::printCards() {
 
 bool Game::colExist(int col) {
     return col < 7 && col >= 0;
+}
+
+void Game::analyzeDeck() {
+    if (deck.getSize() == 0) {
+        deck.addQueue(discardsDeck.unQueue()
+        );
+    }
 }

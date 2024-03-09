@@ -21,7 +21,7 @@ DNode *DNode::getFrPtr() {
 }
 
 void DNode::setFrPtr(DNode *node) {
-    frontPtr = node;
+        frontPtr = node;
 }
 
 DNode *DNode::getRrPtr() {

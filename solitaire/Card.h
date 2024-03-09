@@ -10,14 +10,14 @@
 class Card {
 private:
     std::string symb;
-    char value;
+    int value;
     int pale;
     bool black;
     bool visibility;
 
 public:
-    Card(std::string _symb, char _value, bool _vis, bool color):symb(_symb),value(_value), visibility(_vis), black(color){}
-    Card(std::string _symb, char _value, bool _color, int pale);
+    Card(std::string _symb, int _value, bool _vis, bool color):symb(_symb),value(_value), visibility(_vis), black(color){}
+    Card(std::string _symb, int _value, bool _color, int pale);
     Card();
     void printCard();
     std::string getSymb();

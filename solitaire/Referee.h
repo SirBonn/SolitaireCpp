@@ -15,9 +15,7 @@ private:
 
 public:
     Referee();
-    bool valuateCards(Card beforeCard, Card newCard);
     bool valuateMovement(Card newCard, Stack* stack);
-    bool valuateDeck(Stack sortedDeck, Stack* deckSpace);
     void randomizeDeck(Queue* deck);
 
 };

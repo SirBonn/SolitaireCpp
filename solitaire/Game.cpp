@@ -16,7 +16,8 @@ Game::Game() {
     sortedDeckD = Stack();
 
     referee = Referee();
-    Stack columnsBoard[] = {column1, column2, column3, column4, column5, column6, column7};
+    Stack columnsBoard[] = {column1, column2, column3, column4, column5,
+                            column6, column7};
 }
 
 void Game::playSolitaire() {
@@ -60,7 +61,8 @@ void Game::playSolitaire() {
 void Game::fillCards() {
 
 
-    char values[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'J', 'K', 'Q'};
+    int values[] = {1, 2, 3, 4, 5, 6, 7, 8,
+                    9, 10, 11, 12, 13};
     std::string symbs[] = {"<>", "<3", "E3", "!!"};
     int count = 1;
 
@@ -87,7 +89,8 @@ void Game::moveCard() {
     std::cout << "\na que columna deseas mover la carta\n\t|>> ";
     std::cin >> colNew;
     if (colExist(colOld - 1) && colExist(colNew - 1)) {
-        if (referee.valuateMovement(columnsBoard[colOld - 1].getTopCard(), &columnsBoard[colNew - 1])) {
+        if (referee.valuateMovement(columnsBoard[colOld - 1].getTopCard(),
+                                    &columnsBoard[colNew - 1])) {
             columnsBoard[colNew - 1].push(columnsBoard[colOld - 1].pop());
         } else {
             std::cout << "el movimiento no es valido";
@@ -99,7 +102,33 @@ void Game::moveCard() {
 
 };
 
-void Game::getCard(){
+void Game::getCard() {
+
+
+    int colNew;
+    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    printCards();
+    std::cout << "\nTu carta es [";
+    deck.getLastCard().printCard();
+    while (true) {
+        std::cout
+                << "]\npulsa 0 si deseas descartarla \ningresa el numero de la columna donde deseas mover la carta\n\t|>> ";
+        std::cin >> colNew;
+        if (colExist(colNew - 1)) {
+
+            if (referee.valuateMovement(deck.getLastCard(),
+                                        &columnsBoard[colNew - 1])) {
+                columnsBoard[colNew - 1].push(deck.unQueue());
+                break;
+            } else {
+                std::cout << "el movimiento no es valido";
+            }
+
+        } else if (colNew == 0) {
+            discardsDeck.addQueue(deck.unQueue());
+            break;
+        }
+    }
 
 }
 
@@ -155,14 +184,14 @@ void Game::printBoard() {
 
     std::cout << "\n---------------------------------------------------------------";
 
-    std::cout << "\n                full deck                  discard Deck\n\t\t";
+    std::cout << "\n         full deck                  discard Deck\n\t\t";
     deck.printOnBoard(false);
     discardsDeck.printOnBoard(true);
 
     printCards();
     std::cout << "\nPulsa A: para seleccionar una carta     Pulsa S: para pedir cartas";
-    std::cout << "\nPulsa D: para deshacer el movimiento    Pulsa W: para sacar una carta";
-    std::cout << "\nPulsa X: para rendirse y abandonar la partida                        \n\t|>> ";
+    std::cout << "\nPulsa D: para deshacer el movimiento    Pulsa D: para sacar una carta";
+    std::cout << "\nPulsa X: para rendirse y abandonar la partida          \t\n\t|>> ";
 }
 
 
@@ -179,5 +208,5 @@ void Game::printCards() {
 
 
 bool Game::colExist(int col) {
-    return col < 7;
+    return col < 7 && col >= 0;
 }

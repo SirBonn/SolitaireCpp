@@ -32,13 +32,22 @@ private:
     Referee referee;
 
     void fillCards();
+
     void fillColumns();
+
     void dropCards();
+
     void printBoard();
-    void exitGame(bool* _exit);
-    void moveCard(); //carta a mover y palo a donde ingresara
+
+    void exitGame(bool *_exit);
+
+    void moveCard();
+
     void printCards();
 
+    bool colExist(int col);
+
+    void getCard();
 
 
 public:
@@ -47,9 +56,6 @@ public:
 
     void playSolitaire();
 
-    bool colExist(int col);
-
-    void getCard();
 };
 
 #endif //SOLITAIRECPP_GAME_H

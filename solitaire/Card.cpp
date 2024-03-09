@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Card.h"
 
-Card::Card(std::string _symb, char _value, bool _color, int _pale) {
+Card::Card(std::string _symb, int _value, bool _color, int _pale) {
     symb = _symb;
     value = _value;
     black = _color;
@@ -50,22 +50,19 @@ void Card::setColor(bool _isBlack) {
 
 void Card::printCard() {
 
-    if (value < 70) {
+    if (!isVisible()) {
 
-        if (!visibility) {
-            int number = value - 47;
-            std::cout << number << " " << symb << " " << black;
-        } else {
-            std::cout << "#######" << black;
+        if (value < 11) {
+            std::cout << value << " " << symb << " " << black;
+        } else if (value ==11) {
+            std::cout <<  "J " << symb << " " << black;
+        } else if (value ==12){
+            std::cout <<  "Q " << symb << " " << black;
+        } else if (value == 13){
+            std::cout <<  "K " << symb << " " << black;
         }
 
     } else {
-
-        if (!visibility) {
-            std::cout << value << " " << symb << " " << black;
-        } else {
-            std::cout << "#######" << black;
-        }
 
     }
 }

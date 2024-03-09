@@ -33,17 +33,17 @@ void Referee::randomizeDeck(Queue *deck) {
 
 bool Referee::valuateMovement(Card newCard, Stack *stack) {
 
-    if (stack->getTopCard().getValue() == ( newCard.getValue()  + 1)) {
-        std::cout << "el valor de la ca rta es menor al de la columna\n";
+    if (stack->getTopCard().getValue() == (newCard.getValue() + 1)) {
+        std::cout << "el valor de la carta es menor al de la columna\n";
 //        if(newCard.getPale() == stack->getTopCard().getPale()){
-            return true;
+        return true;
 //        } else {
 //            std::cout << "la carta a ingresr no es del mismo simbolo";
 //            return false;
 //        }
     } else {
-        std::cout<<"el valor de la carta es mayor, movimiento no valido";
-        return false;
+        std::cout << "el valor de la carta es mayor, movimiento no valido";
+        return true;
     };
 
 }

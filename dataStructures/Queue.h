@@ -21,6 +21,8 @@ public:
     void setSize(int _size);
     ~Queue();
     void printOnBoard(bool isVisible);
+
+    Card getLastCard();
 };
 
 #endif //SOLITAIRECPP_QUEUE_H

@@ -34,15 +34,25 @@ Card Stack::pop() {
     }
 
     ptr = endNode;
+
+    if (beginNode == endNode) {
+        beginNode = endNode->getRrPtr();
+    }
+
     endNode = endNode->getRrPtr();
-    endNode->setFrPtr(nullptr);
-    endNode->getCard().setVisvibility(true);
+    if (endNode != nullptr) {
+
+        endNode->setFrPtr(nullptr);
+        //endNode->getCard().setVisvibility(true);
+    }
+
+
     std::cout << "last value: ->";
     ptr->getCard().printCard();
     std::cout << " <-\n";
 
     Card dequeuedCard = ptr->getCard();
-    delete(ptr);
+    delete (ptr);
     size--;
     return dequeuedCard;
 }
@@ -66,6 +76,11 @@ void Stack::setSize(int _size) {
 
 
 void Stack::printStack() {
+
+    if (isEmpty()) {
+        std::cout << "[  ]   |   ";
+    }
+
     ptr = beginNode;
 
     while (ptr != nullptr) {
@@ -88,11 +103,11 @@ void Stack::printSortedDeck() {
 
 }
 
-DNode* Stack::getEndNode() {
+DNode *Stack::getEndNode() {
     return endNode;
 }
 
-DNode* Stack::getBeginNode() {
+DNode *Stack::getBeginNode() {
     return beginNode;
 }
 

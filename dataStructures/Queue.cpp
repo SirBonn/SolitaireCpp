@@ -23,6 +23,10 @@ void Queue::addQueue(Card _card) {
     size++;
 }
 
+Card Queue::getLastCard(){
+    return lastAdd->getCard();
+}
+
 Card Queue::unQueue() {
 
     if (isEmpty()) {

@@ -190,7 +190,7 @@ void Game::printBoard() {
 
     printCards();
     std::cout << "\nPulsa A: para seleccionar una carta     Pulsa S: para pedir cartas";
-    std::cout << "\nPulsa D: para deshacer el movimiento    Pulsa D: para sacar una carta";
+    std::cout << "\nPulsa W: para deshacer el movimiento    Pulsa D: para sacar una carta";
     std::cout << "\nPulsa X: para rendirse y abandonar la partida          \t\n\t|>> ";
 }
 
